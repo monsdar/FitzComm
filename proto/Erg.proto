@@ -1,0 +1,57 @@
+
+package EasyErgsocket;
+
+enum ErgType //TODO: What else makes sense?
+{
+    ROW = 0;
+    BIKE = 1;
+    RUN = 2;
+    OTHER = 3;
+}
+
+enum PlayerType //TODO: What else makes sense?
+{
+    HUMAN = 0;
+    BOT = 1;
+    REPLAY = 2;
+}
+
+message Erg
+{
+    //Id of the ergometer. Should be unique on the network
+    required string ergId = 1;
+    
+    //The name of the Erg, could be different from the Id
+    required string name = 2;
+    
+    //It is often needed to know what kind of erg this is
+    //Example: Let the runners run on land while rowers row on the water
+    required ErgType ergtype = 3;
+    
+    //It is often needed to know what kind of player is behind an erg
+    //Example: Only humans should count in a ranking or in statistics
+    required PlayerType playertype = 4;
+    
+    //Distance in [m] travelled during the exercise
+    optional double distance = 5;
+    
+    //Time in [sec] that has been passed during the exercise
+    optional double exerciseTime = 6;
+    
+    //For rowing: Strokes per minute
+    //For biking: Cycles per minute
+    optional uint32 cadence = 7;
+    
+    //For rowing: Seconds needed for 500m
+    //For others: What makes sense? m/s?
+    optional uint32 paceInSecs = 8;
+    
+    //Some ergs measure the burned calories
+    optional uint32 calories = 9;
+    
+    //Power in Watts (should work at least for rowing and biking)
+    optional uint32 power = 10;
+    
+    //Some ergs capture the users heartrate
+    optional uint32 heartrate = 11;
+}
