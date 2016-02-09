@@ -2,7 +2,7 @@
 project(FitzComm)
 cmake_minimum_required(VERSION 3.3)
 
-include(conanbuildinfo.cmake)
+include(${CMAKE_CURRENT_BINARY_DIR}/conanbuildinfo.cmake)
 conan_basic_setup()
 
 #gather our files
@@ -17,7 +17,7 @@ add_library (FitzComm STATIC ${SOURCES} ${HEADERS})
 target_link_libraries(FitzComm ${CONAN_LIBS})
 
 install(FILES ${HEADERS}
-        DESTINATION E:/Github/Fitznet/install/include/FitzComm)
+        DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/install/include/FitzComm)
         
 install(FILES ${SOURCES}
-        DESTINATION E:/Github/Fitznet/install/sources/FitzComm)
+        DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/install/sources/FitzComm)
